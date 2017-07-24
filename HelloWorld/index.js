@@ -1,3 +1,18 @@
 /* Hello World! program in Node.js */ 
-console.log("Hello World!");
-console.log("Hello World v2!");
+"use strict";
+
+//required modules
+var mHttp = require("http");
+
+//variables
+var iPort = 8081;
+
+//create Http server
+var oServer = mHttp.createServer(function(req, res){
+    console.log("Request received");
+    res.writeHead(200, {'Content-Type': 'text/plain'}); 
+    res.end('Hello World\n'); 
+});
+oServer.listen(iPort);
+
+console.log("Server running http://127.0.0.1:" + iPort + "/");
