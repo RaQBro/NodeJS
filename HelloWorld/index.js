@@ -6,13 +6,18 @@ var mHttp = require("http");
 
 //variables
 var iPort = 8081;
-
+var oResponse = {
+    "returnCode" : "1",
+    "returnMessage" : "Everything ok",
+    "returnDate" : null
+};
 //create Http server
 var oServer = mHttp.createServer(function(req, res){
     console.log("Request received");
-    res.writeHead(200, {'Content-Type': 'text/plain'}); 
-    res.write("Hello world\n");
-    res.end('Response end\n'); 
+    res.writeHead(200, {'Content-Type': 'application/json'}); 
+
+    res.write(JSON.stringify(oResponse));
+    res.end(); 
 });
 
 oServer.listen(iPort);
