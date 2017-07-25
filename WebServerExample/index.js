@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var vFile;
 
 // Create a server
 http.createServer( function (request, response) {  
@@ -9,7 +10,7 @@ http.createServer( function (request, response) {
    
    // Print the name of the file for which request is made.
    console.log("Request for " + pathname + " received.");
-   
+    vFile = pathname.substr(1);
    // Read the requested file content from file system
    fs.readFile(pathname.substr(1), function (err, data) {
       if (err) {
@@ -21,8 +22,11 @@ http.createServer( function (request, response) {
          //Page found	  
          // HTTP Status: 200 : OK
          // Content Type: text/plain
-         response.writeHead(200, {'Content-Type': 'text/html'});	
-         
+         if (vFile == "index.html") {
+            response.writeHead(200, {'Content-Type': 'text/html'});	
+         } else {
+            response.writeHead(200, {'Content-Type': 'text/css'});	
+         }       
          // Write the content of the file to response body
          response.write(data.toString());		
       }
