@@ -1,0 +1,16 @@
+{
+  "name": "unittestexample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node ./index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
