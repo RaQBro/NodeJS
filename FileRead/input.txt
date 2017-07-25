@@ -1,0 +1,4 @@
+Test continut fisier
+linia 2
+linis 3
+linia 4
