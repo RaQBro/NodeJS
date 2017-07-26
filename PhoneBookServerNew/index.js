@@ -71,21 +71,24 @@ function addPerson(oPerson) {
 
     var json = JSON.stringify(obj);
 
-    mFs.writeFile('persons.json', json, 'utf8', callback);
-
-    mFs.readFile('persons.json', 'utf8', function readFileCallback(err, data){
-    if (err){
-        console.log(err);
-    } else {
-    obj = JSON.parse(data); //now it an object
-    obj.persons.push({
-        nume: oPerson.nume,
-        prenume: oPerson.prenume,
-        numar: oPerson.numar,
-        oras: oPerson.oras,
-        email: oPerson.email
+    mFs.writeFile('persons.json', json, 'utf8', function (err) {
+        if (err) throw err;
     });
-    json = JSON.stringify(obj); //convert it back to json
-    fs.writeFile('persons.json', json, 'utf8', callback); // write it back 
-}});
+
+    mFs.readFile('persons.json', 'utf8', function readFileCallback(err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            obj = JSON.parse(data); //now it an object
+            obj.persons.push({
+                nume: oPerson.nume,
+                prenume: oPerson.prenume,
+                numar: oPerson.numar,
+                oras: oPerson.oras,
+                email: oPerson.email
+            });
+            json = JSON.stringify(obj); //convert it back to json
+            fs.writeFile('persons.json', json, 'utf8', callback); // write it back 
+        }
+    });
 }
