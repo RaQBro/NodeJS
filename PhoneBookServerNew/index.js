@@ -1,9 +1,10 @@
 var mExpress = require('express');
+
 var url = require('url');
 var mFs = require('fs');
 var oApp = mExpress();
 
-var iPort = "8081"
+var iPort = "8081";
 
 //Change route to respode to http://127.0.0.1:8081/hello/world
 oApp.get('/', function (req, res) {
@@ -14,8 +15,7 @@ oApp.get('/', function (req, res) {
         var vFile = 'index.html';
     }
     if (oUrl.query != null) {
-        addPerson(oUrl.query)
-
+        addPerson(oUrl.query);
     }
     mFs.readFile(vFile, function (err, data) {
         if (err) {
@@ -65,30 +65,5 @@ oApp.listen(iPort);
 console.log("App running http://127.0.0.1:" + iPort + "/");
 
 function addPerson(oPerson) {
-    var obj = {
-        persons: []
-    };
 
-    var json = JSON.stringify(obj);
-
-    mFs.writeFile('persons.json', json, 'utf8', function (err) {
-        if (err) throw err;
-    });
-
-    mFs.readFile('persons.json', 'utf8', function readFileCallback(err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            obj = JSON.parse(data); //now it an object
-            obj.persons.push({
-                nume: oPerson.nume,
-                prenume: oPerson.prenume,
-                numar: oPerson.numar,
-                oras: oPerson.oras,
-                email: oPerson.email
-            });
-            json = JSON.stringify(obj); //convert it back to json
-            fs.writeFile('persons.json', json, 'utf8', callback); // write it back 
-        }
-    });
 }
