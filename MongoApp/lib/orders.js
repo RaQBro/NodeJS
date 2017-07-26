@@ -1,3 +1,8 @@
+exports.config = module.exports.config = {
+    MongoClient: null,
+    MongoUrl: ""
+};
+
 exports.createOrder = module.exports.createOrder = function createOrder() {
     console.log("Order create")
 };
