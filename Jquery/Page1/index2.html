@@ -1,0 +1,22 @@
+<html>
+
+   <head>
+      <title>The jQuery Example</title>
+      <script type = "text/javascript" 
+         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		
+      <script>
+         $(document).ready(function(){
+            var vContent = $("iframe").contents().find("body");
+            // $content.find("body").append("I'm in an iframe!");
+            var vClass = vContent.attr('class');;
+            vContent.find("div").text('My html');
+         });
+      </script>
+   </head>
+	
+   <body>
+      <iframe src = "index3.html" width = "300" height = "100"></iframe>
+   </body>
+	
+</html>
