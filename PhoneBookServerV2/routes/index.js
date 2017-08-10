@@ -26,30 +26,4 @@ router.get('/', function (req, res, next) {
   })
 });
 
-router.get('/thelist', function (req, res, next) {
-  var mongoClient = mongodb.MongoClient;
-
-  var url = "mongodb://user1:userpass@ds159112.mlab.com:59112/trainingnodejs";
-  mongoClient.connect(url, function (err, db) {
-    if (err) {
-      console.log("Unable to connect to the server");
-    } else {
-      console.log("Connection OK");
-      var collection = db.collection('persondetail');
-      collection.find({}).toArray(function (err, results) {
-        if (err) {
-          res.send(err);
-        } else if (results.length) {
-          res.render('persondetail', {
-            "persondetail": results
-          });
-        } else {
-          res.send("No documents found");
-        }
-        db.close();
-      });
-    }
-  })
-});
-
 module.exports = router;
